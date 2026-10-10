@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="description" content="Two captive businesses inside an S&P 500 manufacturer: a global finance arm and two insurance companies. The public figures, and where to check them.">
+<link rel="canonical" href="https://hugogenhax.github.io/irene-sudac-site/snapon.html">
+<title>What I built at Snap-on — Irene Sudac Advisory</title>
+<style>
+  :root{
+    color-scheme: light only;
+    --white:#FFFFFF;
+    --sage-deep:#33473E;
+    --sage:#4E6B5C;
+    --sage-mid:#6E8878;
+    --sage-pale:#EFF4F0;
+    --sage-line:#DCE5DE;
+    --salmon:#E8A08D;
+    --salmon-ink:#BC6A52;
+    --salmon-pale:#FBEDE8;
+    --ink:#23302B;
+    --muted:#6F7F77;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0; background:#FFFFFF}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    background:var(--white); color:var(--ink);
+    font-family:var(--sans); font-size:17px; line-height:1.72;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--salmon-ink); text-underline-offset:3px; text-decoration-thickness:1px}
+  a:hover{color:var(--sage-deep)}
+  :focus-visible{outline:2px solid var(--salmon-ink); outline-offset:3px}
+
+
+  .wrap{max-width:1160px; margin:0 auto; padding:0 44px}
+
+  /* sticky top bar */
+  .topbar{
+    position:sticky; top:0; z-index:60; background:rgba(255,255,255,.97);
+    border-bottom:1px solid var(--sage-line); backdrop-filter:saturate(1.4) blur(6px);
+  }
+  .bar{
+    max-width:1160px; margin:0 auto; padding:0 44px;
+    display:flex; align-items:center; justify-content:space-between; gap:24px; min-height:74px;
+  }
+  .brand{
+    font-family:var(--serif); font-size:22px; color:var(--sage-deep);
+    background:none; border:0; padding:0; cursor:pointer; white-space:nowrap; line-height:1.2;
+  }
+  .brand em{font-style:normal; color:var(--salmon-ink)}
+  nav.desk ul{list-style:none; margin:0; padding:0; display:flex; flex-wrap:nowrap; justify-content:flex-end}
+  nav.desk li{margin:0 0 0 24px}
+  nav.desk button{
+    background:none; border:0; padding:26px 0 24px; cursor:pointer;
+    font-family:var(--sans); font-size:13.5px; color:var(--muted);
+    border-bottom:3px solid transparent; white-space:nowrap;
+  }
+  nav.desk button:hover{color:var(--sage-deep)}
+  nav.desk button[aria-current="true"]{color:var(--sage-deep); border-bottom-color:var(--salmon)}
+
+  .burger{
+    display:none; align-items:center; background:none; border:1px solid var(--sage-line);
+    padding:9px 14px; cursor:pointer; font-family:var(--sans); font-size:14px; color:var(--sage-deep);
+  }
+  .burger .bars{display:inline-block; width:16px; margin-right:2px}
+  .burger .bars span{display:block; height:2px; background:var(--sage-deep); margin:3px 0}
+  nav.mob{border-top:1px solid var(--sage-line); background:#fff}
+  nav.mob ul{list-style:none; margin:0; padding:8px 24px 18px}
+  nav.mob li{border-bottom:1px solid var(--sage-line)}
+  nav.mob li:last-child{border-bottom:0}
+  nav.mob button{
+    background:none; border:0; width:100%; text-align:left; padding:15px 0;
+    font-family:var(--sans); font-size:16px; color:var(--ink); cursor:pointer;
+  }
+  nav.mob button[aria-current="true"]{color:var(--sage-deep); font-weight:600}
+  nav.mob button[aria-current="true"]::after{content:""; display:inline-block; width:16px; height:2px; background:var(--salmon); margin-left:10px; vertical-align:middle}
+
+  /* hero */
+  .hero{background:var(--sage-pale); border-bottom:1px solid var(--sage-line)}
+  .hero-in{
+    max-width:1160px; margin:0 auto; padding:78px 44px 82px;
+    display:flex; align-items:center; gap:64px;
+  }
+  .hero-copy{flex:1 1 560px; min-width:0}
+  .hero-art{flex:0 0 360px}
+  .hero h1{font-size:40px; margin:0 0 22px}
+  .hero .lede{margin-bottom:30px; max-width:52ch}
+  .hero .ph{height:420px; background:#fff}
+
+  /* interior page header */
+  .phead{padding:64px 0 0}
+
+  .doc{display:flex; align-items:flex-start; padding:70px 0 100px}
+  .col{flex:0 1 690px; min-width:0; max-width:690px}
+  .margin{flex:0 0 240px; margin-left:60px; font-family:var(--sans); font-size:13px; line-height:1.62; color:var(--muted)}
+  .note{margin-bottom:34px}
+  .note b{display:block; color:var(--sage-deep); font-weight:600; margin-bottom:5px; font-size:13px}
+
+  h1{font-family:var(--serif); font-size:37px; line-height:1.24; margin:0 0 24px; font-weight:600; color:var(--sage-deep); letter-spacing:-.012em}
+  h2{font-family:var(--serif); font-size:26px; line-height:1.3; margin:60px 0 16px; font-weight:600; color:var(--sage-deep)}
+  h3{font-family:var(--serif); font-size:20px; margin:40px 0 10px; font-weight:600; color:var(--sage-deep)}
+  p{margin:0 0 20px; max-width:64ch}
+  .lede{font-size:21px; line-height:1.62; color:#3A4B44}
+  ul.body{margin:0 0 22px; padding-left:22px}
+  ul.body li{margin-bottom:12px}
+  ul.body li::marker{color:var(--salmon)}
+
+  table.extract{border-collapse:collapse; width:100%; max-width:580px; margin:34px 0 12px; font-family:var(--sans); font-size:15px}
+  table.extract caption{
+    text-align:left; font-family:var(--sans); font-size:12px; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--sage-mid);
+    padding-bottom:12px; border-bottom:2px solid var(--salmon); margin-bottom:0;
+  }
+  table.extract td{padding:15px 0; border-bottom:1px solid var(--sage-line); vertical-align:baseline}
+  table.extract td:last-child{text-align:right; font-variant-numeric:tabular-nums; font-size:20px; color:var(--sage-deep)}
+  table.extract tr:last-child td{border-bottom:1px solid var(--sage)}
+
+  .pull{border-left:3px solid var(--salmon); padding:6px 0 6px 26px; margin:38px 0; font-family:var(--serif); font-size:21px; line-height:1.55; color:var(--sage-deep)}
+  .quiet{color:var(--muted); font-size:15px}
+  .price{font-family:var(--sans); font-size:15px; border-top:2px solid var(--salmon); margin-top:30px}
+  .price div{display:flex; justify-content:space-between; gap:20px; padding:15px 0; border-bottom:1px solid var(--sage-line); max-width:580px}
+  .price div span:last-child{font-variant-numeric:tabular-nums; white-space:nowrap; color:var(--sage-deep)}
+  .notlist{list-style:none; padding:0; margin:18px 0 0; font-family:var(--sans); font-size:15px; max-width:580px}
+  .notlist li{padding:13px 0 13px 28px; border-bottom:1px solid var(--sage-line); position:relative}
+  .notlist li::before{content:""; position:absolute; left:0; top:22px; width:13px; height:2px; background:var(--salmon)}
+
+  .cta{
+    display:inline-block; margin-top:14px; background:var(--sage-deep); color:#fff;
+    font-family:var(--sans); font-size:15px; padding:15px 30px; border:0; cursor:pointer;
+    text-decoration:none;
+  }
+  .cta:hover{background:var(--salmon-ink)}
+
+  .tool{background:var(--sage-pale); border:0; padding:48px 50px; margin:56px 0 0}
+  .tool h2{margin-top:0}
+  .steps{font-family:var(--sans); font-size:14px; color:var(--sage-mid); margin-bottom:32px; max-width:60ch}
+  fieldset{border:0; padding:0; margin:0 0 30px}
+  legend{font-family:var(--sans); font-size:15px; font-weight:600; color:var(--sage-deep); padding:0; margin-bottom:13px}
+  .opts{display:flex; flex-wrap:wrap; margin:0 -10px -10px 0}
+  .opt{position:relative; display:block; margin:0 10px 10px 0}
+  .opt input{position:absolute; opacity:0; width:100%; height:100%; left:0; top:0; margin:0; cursor:pointer}
+  .opt span{
+    display:block; font-family:var(--sans); font-size:14.5px; padding:11px 19px;
+    border:1px solid var(--sage-line); background:var(--white); cursor:pointer; color:var(--ink);
+  }
+  .qslot{background:var(--white)}
+  .opt input:checked + span{background:var(--sage-deep); color:#fff; border-color:var(--sage-deep)}
+  .opt input:focus-visible + span{outline:2px solid var(--salmon-ink); outline-offset:2px}
+  .hint{font-family:var(--sans); font-size:13.5px; color:var(--salmon-ink); margin:12px 0 0}
+
+  #verdict{margin-top:40px}
+  .vpanel{background:var(--sage-deep); color:#E6EEE9; padding:44px 48px}
+  .vlabel{font-family:var(--sans); font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--salmon); margin-bottom:14px}
+  .vhead{font-family:var(--serif); font-size:33px; line-height:1.22; margin:0 0 20px; font-weight:600; color:#fff}
+  .vpanel p{color:#C6D6CD; max-width:60ch}
+  .vpanel h4{font-family:var(--sans); font-size:13px; letter-spacing:.06em; text-transform:uppercase; margin:34px 0 11px; color:var(--salmon); font-weight:600}
+  .vpanel ul{margin:0; padding-left:21px; color:#C6D6CD}
+  .vpanel ul li{margin-bottom:10px}
+  .vpanel ul li::marker{color:var(--salmon)}
+  .band{margin:30px 0 6px; font-family:var(--sans); font-size:14px}
+  .bandbar{height:6px; background:#476054; position:relative; margin:12px 0 10px}
+  .bandfill{height:6px; background:var(--salmon)}
+  .bandnote{font-family:var(--sans); font-size:13px; color:#9FB5A9; line-height:1.6}
+  .reveal{animation:rise .34s ease-out}
+  @keyframes rise{from{opacity:0; transform:translateY(8px)} to{opacity:1; transform:none}}
+  @media (prefers-reduced-motion:reduce){.reveal{animation:none}}
+
+
+  /* image placeholders */
+  .ph{
+    background:var(--sage-pale); border:1px solid var(--sage-line);
+    position:relative; display:flex; align-items:center; justify-content:center;
+    text-align:center; padding:20px;
+  }
+  .ph i{
+    display:block; font-style:normal; font-family:var(--sans); font-size:12.5px;
+    line-height:1.55; color:var(--sage-mid); max-width:30ch;
+  }
+  .ph i b{display:block; color:var(--sage-deep); font-weight:600; margin-bottom:5px; font-size:13px}
+  .ph::after{
+    content:""; position:absolute; left:20px; top:20px; width:22px; height:2px; background:var(--salmon);
+  }
+  .ph-wide{height:300px; margin:44px 0 10px}
+  .ph-chart{height:270px; margin:34px 0 10px}
+  .ph-portrait{height:290px; margin:0 0 12px}
+  .ph-tall{height:380px; max-width:330px; margin:8px 0 12px}
+  .ph-thumb{height:104px; margin:0 0 10px}
+  .cap{font-family:var(--sans); font-size:12.5px; color:var(--muted); margin:0 0 40px; max-width:60ch}
+  .thumbrow{display:flex; flex-wrap:wrap; margin:26px -14px 10px 0}
+  .thumbrow > div{flex:1 1 190px; margin:0 14px 18px 0; min-width:0}
+  .thumbrow p{font-size:13.5px; margin:0; color:var(--muted)}
+  @media (max-width:540px){
+    .ph-wide,.ph-chart{height:210px}
+    .ph-tall{height:300px; max-width:none}
+  }
+
+  /* testimonial slots */
+  .toolband{background:var(--sage-pale); border-top:1px solid var(--sage-line); border-bottom:1px solid var(--sage-line); padding:66px 0 74px; margin-top:10px}
+  .toolband .wrap{padding:0 44px}
+  .toolwrap{display:flex; align-items:flex-start; gap:56px}
+  .toolwrap .tool{flex:1 1 640px; min-width:0; margin:0; padding:0; background:none}
+  .quotes{flex:0 0 300px}
+  .qhead{font-family:var(--sans); font-size:12px; letter-spacing:.09em; text-transform:uppercase;
+    color:var(--sage-mid); padding-bottom:10px; border-bottom:2px solid var(--salmon); margin-bottom:22px}
+  .qslot{border:1px dashed var(--sage-line); background:var(--sage-pale); padding:18px 20px; margin-bottom:16px}
+  .qslot b{display:block; font-family:var(--sans); font-size:12.5px; color:var(--sage-deep); margin-bottom:6px}
+  .qslot span{font-family:var(--sans); font-size:12.5px; line-height:1.55; color:var(--sage-mid)}
+  .qnote{font-family:var(--sans); font-size:12px; color:var(--muted); line-height:1.55; margin-top:16px}
+  .qrow{display:flex; flex-wrap:wrap; margin:26px -18px 10px 0}
+  .qrow > div{flex:1 1 260px; margin:0 18px 18px 0; min-width:0}
+  @media (max-width:960px){
+    .toolwrap{display:block}
+    .quotes{margin-top:40px}
+    .toolband{padding:44px 0 50px}
+    .toolband .wrap{padding:0 24px}
+  }
+  @media (max-width:540px){
+    .toolband .wrap{padding:0 20px}
+  }
+
+  .q{background:var(--white); border:1px solid var(--sage-line); padding:20px 22px; margin-bottom:16px; position:relative}
+  .q blockquote{margin:0 0 14px; font-family:var(--serif); font-size:16.5px; line-height:1.6; color:var(--ink)}
+  .q cite{display:block; font-family:var(--sans); font-size:12.5px; font-style:normal; color:var(--sage-mid); line-height:1.5}
+  .q cite b{color:var(--sage-deep); font-weight:600}
+  .tag{
+    position:absolute; top:0; right:0; background:var(--salmon-pale); color:var(--salmon-ink);
+    font-family:var(--sans); font-size:10px; letter-spacing:.08em; text-transform:uppercase;
+    padding:4px 9px; border-left:1px solid var(--sage-line); border-bottom:1px solid var(--sage-line);
+  }
+
+  footer.site{border-top:1px solid var(--sage-line); padding:40px 0 70px; font-family:var(--sans); font-size:14px; color:var(--muted)}
+  footer.site strong{color:var(--sage-deep); font-weight:600}
+
+  @media (max-width:1100px){
+    nav.desk{display:none}
+    .burger{display:inline-flex}
+  }
+  @media (max-width:960px){
+    .wrap{padding:0 24px}
+    .bar{padding:0 24px; min-height:64px}
+    .hero-in{display:block; padding:44px 24px 50px}
+    .hero-art{margin-top:36px}
+    .hero h1{font-size:31px}
+    .hero .ph{height:300px}
+    .phead{padding:34px 0 0}
+    .doc{display:block; padding:40px 0 70px}
+    .col{max-width:none}
+    .margin{margin-left:0; margin-top:44px; padding-top:24px; border-top:1px solid var(--sage-line)}
+    h1{font-size:32px}
+    h2{font-size:23px; margin-top:44px}
+    body{font-size:16.5px}
+    .tool{padding:30px 24px}
+    .vpanel{padding:30px 24px}
+    .vhead{font-size:26px}
+    nav li{margin-right:22px}
+  }
+  @media (max-width:540px){
+    .wrap{padding:0 20px}
+    .bar{padding:0 20px}
+    .brand{font-size:19px}
+    .hero-in{padding:34px 20px 40px}
+    .hero h1{font-size:26px}
+    .hero .ph{height:230px}
+    h1{font-size:27px; line-height:1.28}
+    .lede{font-size:18px}
+    body{font-size:16px}
+    .brand{font-size:21px}
+    nav li{margin-right:18px}
+    nav button{font-size:13.5px; padding-bottom:10px}
+    .tool{padding:26px 18px; margin-top:40px}
+    .vpanel{padding:26px 20px}
+    .vhead{font-size:23px}
+    table.extract td:last-child{font-size:18px}
+    .doc{padding:28px 0 56px}
+  }
+
+  nav.desk a,nav.mob a{text-decoration:none}
+  nav.desk a{display:inline-block;padding:26px 0 24px;font-family:var(--sans);font-size:13.5px;color:var(--muted);border-bottom:3px solid transparent}
+  nav.desk a:hover{color:var(--sage-deep)}
+  nav.desk a[aria-current="true"]{color:var(--sage-deep);border-bottom-color:var(--salmon)}
+  nav.mob a{display:block;padding:15px 0;font-family:var(--sans);font-size:16px;color:var(--ink)}
+  nav.mob a[aria-current="true"]{color:var(--sage-deep);font-weight:600}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="bar">
+    <a class="brand" href="index.html" style="text-decoration:none">Irene Sudac <em>Advisory</em></a>
+    <nav class="desk" aria-label="Main"><ul><li><a href="index.html">Home</a></li><li><a href="review.html">The review</a></li><li><a href="snapon.html" aria-current="true">Snap-on</a></li><li><a href="networks.html">Networks</a></li><li><a href="wider.html">Wider work</a></li><li><a href="working.html">How I work</a></li><li><a href="record.html">Record</a></li><li><a href="notes.html">Notes</a></li><li><a href="contact.html">Contact</a></li></ul></nav>
+    <button class="burger" id="burger" aria-expanded="false" aria-controls="mnav">
+      <span class="bars"><span></span><span></span><span></span></span>&nbsp;Menu
+    </button>
+  </div>
+  <nav class="mob" id="mnav" aria-label="Main, mobile" hidden><ul><li><a href="index.html">Home</a></li><li><a href="review.html">The review</a></li><li><a href="snapon.html" aria-current="true">Snap-on</a></li><li><a href="networks.html">Networks</a></li><li><a href="wider.html">Wider work</a></li><li><a href="working.html">How I work</a></li><li><a href="record.html">Record</a></li><li><a href="notes.html">Notes</a></li><li><a href="contact.html">Contact</a></li></ul></nav>
+</header>
+
+<main id="main"><div class="wrap"><div class="doc phead"><div class="col"><h1>What I built at Snap-on</h1><p class="lede">Two captive businesses inside a company on the S&amp;P 500. A global finance arm, and two insurance companies, both serving the same franchise network.</p><h2>The finance captive</h2><p>A lending business across four countries: the United States, Canada, the United Kingdom, and Australia and New Zealand. It financed franchisees carrying their vans and stock, and the technicians buying from them. Snap-on reports it as a separate segment, so every figure below is public.</p><table class="extract"><caption>Financial services segment, 2022</caption><tr><td>Share of group revenue</td><td>~6%</td></tr><tr><td>Share of group operating earnings</td><td>~22%</td></tr><tr><td>Segment operating earnings</td><td>$266m</td></tr><tr><td>Gross finance portfolio</td><td>$2,278m</td></tr><tr><td>Delinquency, 60 days and over, US</td><td>1.3%</td></tr></table><h2>What that means</h2><p>A fifth of group operating profit on six per cent of revenue. The share of earnings is calculated from the reported segment figures rather than taken from a line in the accounts, and the arithmetic is in the note alongside.</p><p>The portfolio grew from $733m in 2010 to $2,278m in 2022. Delinquency held flat while it grew. Growth without deterioration is the harder half.</p><div class="ph-chart" style="background:var(--sage-pale);border:1px solid var(--sage-line);margin:34px 0 10px;padding:28px 34px;display:flex;align-items:flex-end;gap:48px;height:270px;box-sizing:border-box"><svg viewBox="0 0 260 180" style="width:220px;height:170px;flex-shrink:0" role="img" aria-label="Gross finance portfolio grew from $733 million in 2010 to $2,278 million in 2022"><line x1="30" y1="150" x2="250" y2="150" stroke="#DCE5DE" stroke-width="2"/><rect x="60" y="111.38718173836699" width="54" height="38.61281826163301" fill="#8FA596"/><rect x="166" y="30" width="54" height="120" fill="#4E6B5C"/><text x="87" y="168" font-family="ui-sans-serif,system-ui" font-size="12" fill="#6F7F77" text-anchor="middle">2010</text><text x="193" y="168" font-family="ui-sans-serif,system-ui" font-size="12" fill="#6F7F77" text-anchor="middle">2022</text><text x="87" y="103.38718173836699" font-family="ui-sans-serif,system-ui" font-size="13" fill="#33473E" text-anchor="middle" font-weight="600">$733m</text><text x="193" y="22" font-family="ui-sans-serif,system-ui" font-size="13" fill="#33473E" text-anchor="middle" font-weight="600">$2,278m</text></svg><div style="font-family:ui-sans-serif,system-ui;font-size:13px;line-height:1.6;color:#6F7F77;max-width:26ch"><b style="display:block;color:#33473E;font-weight:600;margin-bottom:5px;font-size:13px">Gross finance portfolio</b>The two published endpoints. Year-by-year figures between them are not shown here because they are not yet confirmed against the public filings.</div></div><p class="cap">Gross finance portfolio and segment operating earnings across the period. Source: Snap-on published results.</p><h2>The insurance captives</h2><p>Two insurance companies covering franchisees across auto, inventory and product liability. This sat inside the Tools segment, so there are no separate public figures, and I do not publish any.</p><p>What I can tell you is how members behaved. Participation was voluntary throughout.</p><table class="extract"><caption>Franchise insurance program, my own figures</caption><tr><td>Franchisee participation</td><td>85%</td></tr><tr><td>Retention</td><td>~100%</td></tr></table><div class="pull">People kept choosing it, year after year. That is the only real evidence a network program serves its members rather than earns from them.</div><p><a class="cta" href="networks.html">Captives for franchise networks</a></p></div><aside class="margin"><div class="note"><b>Where to check</b>Snap-on Incorporated fourth quarter and full year 2022 results, and the Form 10-K. Segment figures appear in both.</div><div class="note"><b>The arithmetic</b>Operating earnings before financial services ran at 20.9% of $4,492.8m in net sales, about $939m. Financial services added $266m. That puts the segment at roughly 22% of the total.</div><div class="note"><b>Roles</b>Hired in 2010 as Vice President, Financial Services, responsible for the global captive finance business and Treasury. In 2014 the remit expanded to all insurance, including the two captive insurance companies, and the title President of Snap-on SecureCorp came with it.</div><div class="note"><b>Why only one set of figures</b>The finance captive is a reported segment. The insurance captives were not separately reported.</div></aside></div></div></main>
+
+<div class="wrap">
+<footer class="site">
+  <div><strong>Irene Sudac Advisory</strong> &nbsp;&middot;&nbsp; irenesudac.com &nbsp;&middot;&nbsp; New York</div><div style="margin-top:6px">Manufacturers and franchise networks across the New York, Connecticut and New Jersey corridor</div>
+  <div style="margin-top:8px">Contact details and legal notices to follow.</div>
+</footer>
+</div>
+
+<script>document.getElementById("burger").addEventListener("click",function(){var m=document.getElementById("mnav");var open=m.hidden;m.hidden=!open;this.setAttribute("aria-expanded",open?"true":"false");});</script>
+</body>
+</html>
