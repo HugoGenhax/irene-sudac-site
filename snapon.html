@@ -55,13 +55,6 @@
   .brand em{font-style:normal; color:var(--salmon-ink)}
   nav.desk ul{list-style:none; margin:0; padding:0; display:flex; flex-wrap:nowrap; justify-content:flex-end}
   nav.desk li{margin:0 0 0 24px}
-  nav.desk button{
-    background:none; border:0; padding:26px 0 24px; cursor:pointer;
-    font-family:var(--sans); font-size:13.5px; color:var(--muted);
-    border-bottom:3px solid transparent; white-space:nowrap;
-  }
-  nav.desk button:hover{color:var(--sage-deep)}
-  nav.desk button[aria-current="true"]{color:var(--sage-deep); border-bottom-color:var(--salmon)}
 
   .burger{
     display:none; align-items:center; background:none; border:1px solid var(--sage-line);
@@ -73,12 +66,6 @@
   nav.mob ul{list-style:none; margin:0; padding:8px 24px 18px}
   nav.mob li{border-bottom:1px solid var(--sage-line)}
   nav.mob li:last-child{border-bottom:0}
-  nav.mob button{
-    background:none; border:0; width:100%; text-align:left; padding:15px 0;
-    font-family:var(--sans); font-size:16px; color:var(--ink); cursor:pointer;
-  }
-  nav.mob button[aria-current="true"]{color:var(--sage-deep); font-weight:600}
-  nav.mob button[aria-current="true"]::after{content:""; display:inline-block; width:16px; height:2px; background:var(--salmon); margin-left:10px; vertical-align:middle}
 
   /* hero */
   .hero{background:var(--sage-pale); border-bottom:1px solid var(--sage-line)}
